@@ -14,125 +14,129 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: #ffffff;
-            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
+            padding: 20px;
         }
 
         .calculator {
-            background: #2a2a3a;
-            border-radius: 10px;
-            padding: 12px;
+            background: #2d3748;
+            border-radius: 20px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-            border: 1px solid #404040;
+            padding: 20px;
+            width: 240px;
         }
 
         .display {
-            width: 140px;
-            height: 40px;
-            background: #1a1a1a;
-            border-radius: 8px;
-            margin-bottom: 10px;
+            background: #1a202c;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            text-align: right;
+            border: 2px solid #4a5568;
+        }
+
+        .display-value {
+            color: #fff;
+            font-size: 2rem;
+            font-weight: 300;
+            min-height: 50px;
             display: flex;
             align-items: center;
             justify-content: flex-end;
-            padding: 0 10px;
-            font-size: 1.3rem;
-            color: #ffffff;
-            font-weight: 300;
-            border: 1px solid #333;
+            word-break: break-all;
         }
 
         .buttons {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
-            gap: 8px;
+            gap: 10px;
         }
 
         button {
-            width: 30px;
-            height: 30px;
+            height: 50px;
             border: none;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 500;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.2s ease;
             color: white;
         }
 
-        .number, .decimal {
-            background: #3a3a4a;
-            border: 1px solid #4a4a5a;
+        .btn-number {
+            background: #4a5568;
         }
 
-        .number:hover, .decimal:hover {
-            background: #4a4a5a;
+        .btn-number:hover {
+            background: #5a6578;
             transform: translateY(-2px);
         }
 
-        .operator {
-            background: #ff6b35;
-            border: 1px solid #ff7b45;
+        .btn-operator {
+            background: #e53e3e;
         }
 
-        .operator:hover {
-            background: #ff7b45;
+        .btn-operator:hover {
+            background: #f56565;
             transform: translateY(-2px);
         }
 
-        .clear {
-            background: #ff4757;
-            border: 1px solid #ff5767;
+        .btn-clear {
+            background: #38a169;
+            grid-column: span 2;
         }
 
-        .clear:hover {
-            background: #ff5767;
+        .btn-clear:hover {
+            background: #48bb78;
             transform: translateY(-2px);
         }
 
-        .equals {
-            background: #2ed573;
-            border: 1px solid #3ee583;
+        .btn-equals {
+            background: #3182ce;
+            grid-column: span 2;
         }
 
-        .equals:hover {
-            background: #3ee583;
+        .btn-equals:hover {
+            background: #4299e1;
             transform: translateY(-2px);
         }
 
         button:active {
-            transform: translateY(1px);
+            transform: translateY(0);
         }
     </style>
+<meta name="description" content="calculator">
 </head>
 <body>
     <div class="calculator">
-        <div class="display" id="display">0</div>
+        <div class="display">
+            <div class="display-value" id="display">0</div>
+        </div>
         <div class="buttons">
-            <button class="clear" onclick="clearDisplay()">C</button>
-            <button class="clear" onclick="deleteLast()">⌫</button>
-            <button class="operator" onclick="appendToDisplay('/')">/</button>
-            <button class="operator" onclick="appendToDisplay('*')">×</button>
+            <button class="btn-clear" data-event-click="clearDisplay()">Clear</button>
+            <button class="btn-operator" data-event-click="appendToDisplay("/')">/</button>
+            <button class="btn-operator" data-event-click="appendToDisplay("*')">×</button>
             
-            <button class="number" onclick="appendToDisplay('7')">7</button>
-            <button class="number" onclick="appendToDisplay('8')">8</button>
-            <button class="number" onclick="appendToDisplay('9')">9</button>
-            <button class="operator" onclick="appendToDisplay('-')">-</button>
+            <button class="btn-number" data-event-click="appendToDisplay("7')">7</button>
+            <button class="btn-number" data-event-click="appendToDisplay("8')">8</button>
+            <button class="btn-number" data-event-click="appendToDisplay("9')">9</button>
+            <button class="btn-operator" data-event-click="appendToDisplay("-')">-</button>
             
-            <button class="number" onclick="appendToDisplay('4')">4</button>
-            <button class="number" onclick="appendToDisplay('5')">5</button>
-            <button class="number" onclick="appendToDisplay('6')">6</button>
-            <button class="operator" onclick="appendToDisplay('+')">+</button>
+            <button class="btn-number" data-event-click="appendToDisplay("4')">4</button>
+            <button class="btn-number" data-event-click="appendToDisplay("5')">5</button>
+            <button class="btn-number" data-event-click="appendToDisplay("6')">6</button>
+            <button class="btn-operator" data-event-click="appendToDisplay("+')">+</button>
             
-            <button class="number" onclick="appendToDisplay('1')">1</button>
-            <button class="number" onclick="appendToDisplay('2')">2</button>
-            <button class="number" onclick="appendToDisplay('3')">3</button>
-            <button class="equals" onclick="calculate()" rowspan="2">=</button>
+            <button class="btn-number" data-event-click="appendToDisplay("1')">1</button>
+            <button class="btn-number" data-event-click="appendToDisplay("2')">2</button>
+            <button class="btn-number" data-event-click="appendToDisplay("3')">3</button>
+            <button class="btn-number" data-event-click="appendToDisplay("0')" style="grid-row: span 2;">0</button>
             
-            <button class="number" onclick="appendToDisplay('0')" style="grid-column: span 2;">0</button>
-            <button class="decimal" onclick="appendToDisplay('.')">.</button>
+            <button class="btn-number" data-event-click="appendToDisplay(".')">.</button>
+            <button class="btn-equals" data-event-click="calculate()">=</button>
         </div>
     </div>
 
@@ -156,20 +160,13 @@
             } else {
                 currentInput += value;
             }
+            
             updateDisplay();
         }
 
         function clearDisplay() {
             currentInput = '0';
-            updateDisplay();
-        }
-
-        function deleteLast() {
-            if (currentInput.length > 1) {
-                currentInput = currentInput.slice(0, -1);
-            } else {
-                currentInput = '0';
-            }
+            shouldResetDisplay = false;
             updateDisplay();
         }
 
@@ -177,7 +174,13 @@
             try {
                 let expression = currentInput.replace(/×/g, '*');
                 let result = eval(expression);
-                currentInput = result.toString();
+                
+                if (!isFinite(result)) {
+                    currentInput = 'Error';
+                } else {
+                    currentInput = result.toString();
+                }
+                
                 shouldResetDisplay = true;
                 updateDisplay();
             } catch (error) {
@@ -191,24 +194,16 @@
         document.addEventListener('keydown', function(event) {
             const key = event.key;
             
-            if (key >= '0' && key <= '9') {
+            if (key >= '0' && key <= '9' || key === '.') {
                 appendToDisplay(key);
-            } else if (key === '.') {
-                appendToDisplay('.');
-            } else if (key === '+' || key === '-') {
+            } else if (key === '+' || key === '-' || key === '/') {
                 appendToDisplay(key);
             } else if (key === '*') {
                 appendToDisplay('*');
-            } else if (key === '/') {
-                event.preventDefault();
-                appendToDisplay('/');
             } else if (key === 'Enter' || key === '=') {
-                event.preventDefault();
                 calculate();
             } else if (key === 'Escape' || key === 'c' || key === 'C') {
                 clearDisplay();
-            } else if (key === 'Backspace') {
-                deleteLast();
             }
         });
     </script>
